@@ -26,6 +26,17 @@ public class MainActivity extends Activity {
         // Enable Javascript
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        
+        // Gets whether the WebView supports zoom.
+        webSettings.setSupportZoom(false);
+        
+        // Para não deixar o user selecionar textos do WebView
+        mWebView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return true;
+            }
+        });
 
         // Use remote resource
         // mWebView.loadUrl("http://example.com");
