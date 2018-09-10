@@ -10,14 +10,14 @@ If you want to create an app that displays the contents of a remote website
 
 1. uncomment lines **30** and **31** in `MainActivity.java` and replace `http://example.com` with your remote source
 
-	```
+	```java
 	mWebView.loadUrl("http://example.com");
 	mWebView.setWebViewClient(new MyWebViewClient());
 	```
 
 2. open the `MyWebViewClient.java` file and replace `example.com` on line **12** with your custom hostname
 
-	```
+	```java
 	if (Uri.parse(url).getHost().endsWith("example.com")) {
 	```
 
@@ -27,7 +27,7 @@ If you want to create a local HTML5 android app
 
 1. uncomment line **34** in `MainActivity.java`
 
-	```
+	```java
 	mWebView.loadUrl("file:///android_asset/index.html");
 	```
 
