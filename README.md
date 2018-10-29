@@ -6,7 +6,7 @@ This is a template project for Android Studio that allows you to create an andro
 
 ### Using a remote source
 
-If you want to create an app that displays the contents of a remote website
+If you want to create an app that displays the content of a remote website
 
 1. uncomment lines **30** and **31** in `MainActivity.java` and replace `http://example.com` with your remote source
 
