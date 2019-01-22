@@ -9,6 +9,7 @@ import java.util.Objects;
 
 class MyWebViewClient extends WebViewClient {
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         if (Objects.requireNonNull(Uri.parse(url).getHost()).endsWith("example.com")) {

@@ -15,7 +15,7 @@ If you want to create an app that displays the content of a remote website
 	mWebView.setWebViewClient(new MyWebViewClient());
 	```
 
-2. open the `MyWebViewClient.java` file and replace `example.com` on line **14** with your custom hostname
+2. open the `MyWebViewClient.java` file and replace `example.com` on line **15** with your custom hostname
 
 	```java
 	if (Objects.requireNonNull(Uri.parse(url).getHost()).endsWith("example.com")) {
