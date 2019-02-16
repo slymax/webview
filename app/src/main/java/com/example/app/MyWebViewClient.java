@@ -5,8 +5,6 @@ import android.net.Uri;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import java.util.Objects;
-
 class MyWebViewClient extends WebViewClient {
 
     @SuppressWarnings("deprecation")
