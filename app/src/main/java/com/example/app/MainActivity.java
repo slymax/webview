@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
         mWebView = findViewById(R.id.activity_main_webview);
 
         // Force links and redirects to open in the WebView instead of in a browser
-        mWebView.setWebViewClient(new WebViewClient());
+        mWebView.setWebViewClient(new MyWebViewClient());
 
         // Enable Javascript
         WebSettings webSettings = mWebView.getSettings();
