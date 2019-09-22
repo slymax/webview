@@ -7,7 +7,6 @@ import android.webkit.WebViewClient;
 
 class MyWebViewClient extends WebViewClient {
 
-    @SuppressWarnings("deprecation")
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         Uri uri = Uri.parse(url);
