@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+@SuppressWarnings("unused")
 class MyWebViewClient extends WebViewClient {
 
     @Override
