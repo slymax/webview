@@ -11,7 +11,7 @@ class MyWebViewClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         Uri uri = Uri.parse(url);
-        if (uri.getHost() != null && uri.getHost().contains("example.com")) {
+        if (uri.getHost() != null && uri.getHost().endsWith(".example.com")) {
             return false;
         }
 
