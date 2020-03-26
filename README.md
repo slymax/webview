@@ -8,7 +8,7 @@ This is a template project for Android Studio that allows you to create an andro
 
 If you want to create an app that displays the content of a remote website
 
-1. uncomment line **24** in `MainActivity.java` and replace `http://example.com` with your remote source
+1. uncomment line **24** in `MainActivity.java` and replace `https://example.com` with your remote source
 
 	```java
 	mWebView.loadUrl("https://example.com");
