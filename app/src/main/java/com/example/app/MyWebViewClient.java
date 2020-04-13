@@ -10,7 +10,10 @@ class MyWebViewClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         String hostname;
+
+        // YOUR HOSTNAME
         hostname = "example.com";
+
         Uri uri = Uri.parse(url);
         if (url.startsWith("file:") || uri.getHost() != null && uri.getHost().endsWith(hostname)) {
             return false;
