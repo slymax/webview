@@ -1,11 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-</head>
-<body style="font-family: monospace">
-    REPLACE THIS FILE WITH YOUR OWN INDEX.HTML
-</body>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Mini KJV Bible</title>
+        <link rel="stylesheet" type="text/css" href="./style.css" />
+    </head>
+    <body>
+        <div class="maincontainer">
+            <div class="header">
+                <p class="apptitle">MINI KJV BIBLE</p>
+                <p class="tagline">Fastest Access to Bible Text</p>
+            </div>
+            <div class="query">
+                <select id="books"></select>
+                <select id="chapters"></select>
+                <select id="verses"></select>
+                <div id="speechPanel" style="display: none;">
+                    <button id="play"></button>
+                    <button id="pause"></button>
+                    <button id="stop"></button>
+                </div>
+            </div>
+            <div class="result">
+                <div id="booktitle"></div>
+                <div id="textcontent"></div>
+            </div>
+            <div class="footer">
+                <p class="copyright">Copyright &copy; 2020. All rights reserved. <a href="https://onumahkalusamuel.tk" target="blank">Onumah Kalu Samuel</a></p>
+                <p class="desgin">Design By: <a href="#" target="blank">Designer Name</a></p>
+            </div>
+        </div>
+        <!-- JavaScript / Program Logic -->
+        <script src="./assets/Books.json"></script>
+        <script>
+            // bootstrapping
+            let bookhtml = '';
+            books.forEach((book)=>{
+                let thisbook = book.replace(/\s+/, '').replace(/\s+/, '');
+                let script = document.createElement('script');
+                script.setAttribute('src', "./assets/" + thisbook + ".json");
+                document.querySelector("body").append(script);
+                bookhtml += `<option value="_${thisbook}">${book}</option>`;
+            });
+            document.querySelector("#books").innerHTML = bookhtml;
+
+            // the speech synthesis
+            const State = {
+                synth: null,
+                flag: null,
+                playEle: document.querySelector("#play"),
+                pauseEle: document.querySelector("#pause"),
+                stopEle: document.querySelector("#stop")
+            };
+            onload = function () {
+                if('speechSynthesis' in window) {
+                    document.querySelector("#speechPanel").style.display = "block";
+                    State.synth = speechSynthesis;
+                    State.flag = false;
+                    
+                    // click event listeners
+                    State.playEle.addEventListener('click', onClickPlay);
+                    State.pauseEle.addEventListener('click', onClickPause);
+                    State.stopEle.addEventListener('click', onClickStop);
+                }
+            }
+            
+            // functions
+            const onClickPlay = () => {
+                if(!State.flag) {
+                    State.flag = true;
+                    let text = '';
+                    document.querySelectorAll(".versetext").forEach((ele)=> {text += ' ' + ele.textContent;});
+                    utterance = new SpeechSynthesisUtterance(text);
+                    utterance.voice = State.synth.getVoices()[0];
+                    utterance.onend = function() {
+                        State.flag = false;
+                        State.playEle.className = State.pauseEle.className = '';
+                        State.stopEle.className = 'stopped';
+                    };
+                    State.playEle.className = 'played';
+                    State.stopEle.className = '';
+                    State.synth.speak(utterance);
+                }
+                if(State.synth.paused) {
+                    State.playEle.className = 'played';
+                    State.pauseEle.className = '';
+                    State.synth.resume();
+                }
+            }
+            
+            const onClickPause = () => {
+                if(State.synth.speaking && !State.synth.paused) {
+                    State.pauseEle.className = 'paused';
+                    State.playEle.className = '';
+                    State.synth.pause();
+                }
+            }
+
+            const onClickStop = () => {
+                if(State.synth.speaking) {
+                    State.stopEle.className = 'stopped';
+                    State.playEle.className = State.pauseEle.className = '';
+                    State.flag = false;
+                    State.synth.cancel();
+                }
+            }
+
+            const loadChapters = () => {
+                let book = eval(document.querySelector("#books").value);
+                let chapters = book.chapters.length;
+                let chaptershtml = '';
+                for( var x = 0; x < chapters; x++ ) chaptershtml += `<option value="${x}">${x+1}</option>`;
+                document.querySelector("#chapters").innerHTML = chaptershtml;
+                loadVerses();
+                onClickStop();
+            }
+
+            const loadVerses = () => {
+                let book = eval(document.querySelector("#books").value);
+                let chapter = document.querySelector("#chapters").value;
+                let verses = book.chapters[chapter].verses.length;
+                let verseshtml = `<option value="all">All</option>`;
+                for(var x = 0; x < verses; x++) verseshtml += `<option value="${x}">${x+1}</option>`;
+                document.querySelector("#verses").innerHTML = verseshtml;
+                loadText();
+                onClickStop();
+            }
+
+            const loadText = () => {
+                let book = eval(document.querySelector("#books").value);
+                let chapter = document.querySelector("#chapters").value;
+                let verse = document.querySelector("#verses").value;
+                let verses = book.chapters[chapter].verses;
+                let versecount = verses.length;
+                let versestoload = [];
+                if(verse  == 'all') { for( var x = 0; x < versecount; x++ ) versestoload.push(x); } 
+                else { versestoload.push(verse); }
+                let texthtml = versestoload.map((v, index) => {
+                return (`<span class="verse"><strong class="versenumber">${verses[v].verse}.</strong>&nbsp;<span class="versetext">${verses[v].text}</span></span>`)
+                }).join('');
+                document.querySelector("#booktitle").innerHTML = book.book + " " + book.chapters[chapter].chapter;
+                document.querySelector("#textcontent").innerHTML = texthtml;
+                onClickStop();
+            }
+
+            // event listeners
+            document.querySelector("#books").addEventListener('change', loadChapters);
+            document.querySelector("#chapters").addEventListener('change', loadVerses);
+            document.querySelector("#verses").addEventListener('change', loadText);
+            setTimeout(() => {if(document.readyState=='complete') loadChapters();}, 300);
+        </script>
+    </body>
 </html>
