@@ -12,6 +12,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:configChanges="orientation|screenSize"
             android:name="com.example.app.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
