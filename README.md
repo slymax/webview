@@ -38,4 +38,4 @@ Default package name is `com.example.app`. To change it for something else you s
 
 To change application name, go to `app/src/main/res/values/strings.xml` and replace 4th line with your name.
 
-To change application icon, replace files in app/src/main/res/mipmap-* with your icon.
+To change application icon, replace files in `app/src/main/res/mipmap-*` with your icon.
