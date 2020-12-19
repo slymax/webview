@@ -2,7 +2,7 @@ This is a template project for Android Studio that allows you to create an andro
 
 ### Getting started
 
-[Download](https://github.com/slymax/webview/archive/master.zip) or clone this repository and import it into Android Studio.
+[Download](https://github.com/azhinu/Web-to-App/archive/master.zip) or clone this repository and import it into Android Studio.
 
 ### Using a remote source
 
@@ -31,3 +31,11 @@ If you want to create a local HTML5 android app
 	```
 
 2. put all your files (including your `index.html`) in the `assets` directory
+
+### Branding
+
+Default package name is `com.example.app`. To change it for something else you should to change it everywhere, includes app/src/main/java dir.
+
+To change application name, go to `app/src/main/res/values/strings.xml` and replace 4th line with your name.
+
+To change application icon, replace files in app/src/main/res/mipmap-* with your icon.
