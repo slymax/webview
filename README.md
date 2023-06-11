@@ -19,6 +19,7 @@ If you want to create an app that shows the content of a remote website
 	```java
 	hostname = "example.com";
 	```
+3. open the strings.xml file in \app\res\values\strings.xml and replace "Webview App" with your preferred app name
 
 ### Using a local source
 
