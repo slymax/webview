@@ -41,7 +41,7 @@ When you are ready to release your app and have test the app in Studio virtual s
 3. If the APK file gets built, then BEFORE loading the APK file into your mobile, test the APK file at virustotal.com to make sure it isn't flagged. Many APK files across the web have viruses, so this should be good security practice. 
 4. Test the APK file again at MetaDefender https://metadefender.opswat.com/
 5. Let Google virus scan your file. Copy the APK file to your Google Drive. Within a few minutes, if there is a virus in the file, Google will send you an email. If not, you won't get an email.
-6. If all the virus testing passes, then install the APK file into your phone by either emailing the file to yourself, or using a remote FTP connection into your phone. The File Manager app lets you do this. https://play.google.com/store/apps/details?id=com.alphainventor.filemanager
+6. If all the virus testing passes, then install the APK file into your phone by either emailing the file to yourself from your desktop and opening on mobile, or using a remote FTP connection into your phone. The File Manager app lets you do this by opening an FTP server on your phone. https://play.google.com/store/apps/details?id=com.alphainventor.filemanager
 7. Test your app on your phone
 8. If it works on your phone, then build the package for uploading to Google Play store
 9. Locate the build.gradle (module.app) file on the left hand side in Android Studio
